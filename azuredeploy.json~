@@ -129,7 +129,7 @@
     }
   },
   "variables": {
-    "baseUrl": "file:///home/hexaview/backup/pooja/mongodbDocs/mongodb-sharding-ubuntu/",
+    "baseUrl": "https://github.com/poojarani-hexaview/testazure/",
     "environmentAzureCloud": {
       "serviceEndPoint": "core.windows.net",
       "templateBaseUrl": "[concat(variables('baseUrl'), 'nested/')]",
