@@ -14,9 +14,6 @@
     "mongoAdminPassword": {
       "value": "GEN-PASSWORD"
     },
-    "dnsNamePrefix": {
-      "value": "GEN-UNIQUE"
-    },
     "environment": {
       "value": "AzureCloud"
     },

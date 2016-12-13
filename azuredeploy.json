@@ -26,12 +26,6 @@
         "description": "MongoDB Administrator password used when provisioning MongoDB sharding cluster"
       }
     },
-    "dnsNamePrefix": {
-      "type": "string",
-      "metadata": {
-        "description": "DNS Name for the publicly accessible router nodes. Must be lowercase. It should match with the following regular expression: ^[a-z][a-z0-9-]{1,61}[a-z0-9]$ or it will raise an error."
-      }
-    },
     "ubuntuOSVersion": {
       "type": "string",
       "defaultValue": "14.04.2-LTS",
@@ -47,8 +41,7 @@
     "environment": {
       "type": "string",
       "allowedValues": [
-        "AzureCloud",
-        "AzureChinaCloud"
+        "AzureCloud"
       ],
       "metadata": {
         "description": "Different environments in Azure. Choose AzureCloud for Global Azure, and choose AzureChinaCloud for Mooncake (Azure China Cloud)."
@@ -136,8 +129,7 @@
     }
   },
   "variables": {
-    "baseUrl": "https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/mongodb-sharding-centos/",
-    "baseChinaUrl": "http://msmirrors.blob.core.chinacloudapi.cn/mongodb/mongodb-sharding-centos/",
+    "baseUrl": "file:///home/hexaview/backup/pooja/mongodbDocs/mongodb-sharding-ubuntu/",
     "environmentAzureCloud": {
       "serviceEndPoint": "core.windows.net",
       "templateBaseUrl": "[concat(variables('baseUrl'), 'nested/')]",
@@ -147,16 +139,6 @@
       "router2NodeScript": "[concat(variables('baseUrl'), 'scripts/router2.sh')]",
       "replicaPrimaryNodeScript": "[concat(variables('baseUrl'), 'scripts/replica_primary.sh')]",
       "replicaSecondaryNodeScript": "[concat(variables('baseUrl'), 'scripts/replica_secondary.sh')]"
-    },
-    "environmentAzureChinaCloud": {
-      "serviceEndPoint": "core.chinacloudapi.cn",
-      "templateBaseUrl": "[concat(variables('baseChinaUrl'), 'nested/')]",
-      "configPrimaryNodeScript": "[concat(variables('baseChinaUrl'), 'scripts/config_primary.sh')]",
-      "configSecondaryNodeScript": "[concat(variables('baseChinaUrl'), 'scripts/config_secondary.sh')]",
-      "router1NodeScript": "[concat(variables('baseChinaUrl'), 'scripts/router1.sh')]",
-      "router2NodeScript": "[concat(variables('baseChinaUrl'), 'scripts/router2.sh')]",
-      "replicaPrimaryNodeScript": "[concat(variables('baseChinaUrl'), 'scripts/replica_primary.sh')]",
-      "replicaSecondaryNodeScript": "[concat(variables('baseChinaUrl'), 'scripts/replica_secondary.sh')]"
     },
     "environment": "[variables(concat('environment', parameters('environment')))]",	
     "templateBaseUrl": "[variables('environment').templateBaseUrl]",
@@ -821,9 +803,6 @@
           "vmSize": {
             "value": "[parameters('routerNodeVmSize')]"
           },
-          "dnsname": {
-            "value": "[parameters('dnsNamePrefix')]"
-          },
           "staticIp": {
             "value": "[variables('networkSettings').statics.routerIp1]"
           },
@@ -868,9 +847,6 @@
           },
           "vmSize": {
             "value": "[parameters('routerNodeVmSize')]"
-          },
-          "dnsname": {
-            "value": "[parameters('dnsNamePrefix')]"
           },
           "staticIp": {
             "value": "[variables('networkSettings').statics.routerIp2]"
